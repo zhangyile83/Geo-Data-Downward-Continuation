@@ -4,7 +4,7 @@ gamma = 1/(2*pi);
 dx = 5100/511;
 dy = 5100/511;
 
-h =  20
+h =  200
 
 b200 = Forward_FFT(Ex,dx,dy,h);
 b200 = reshape(b200, 512, 512);

@@ -3,22 +3,29 @@
 %preconditioner
 clear;
 close all
-%load('data_250_1.mat');
-%load('data_0_exact.mat');
-load('h200');
+% load mag2_h0
+%A = cut(512,512,B);
+% A = extend_matrix(512,A);
+load h_200_Exact
+% load h200
+% load mag2_h200
 load Exact;
 
+% A = B;
+
+% dx = 10;
+% dy = 10;
 dx = 5100/511;
 dy = 5100/511;
 
-h = 200;
+% h = 100;
 % A = Forward_BTTB(Ex,h);
 
 scale=1;
 lt=0;
-
+h = 200;
 tol = 10^-3;
-noiselevel=0.0018;
+noiselevel = 0;
 alpha=0.001;
 
 T=reshape(A,512,512);
@@ -30,6 +37,10 @@ temp1=norm(b);
 ccc1=norm(temp)/temp1
 b1=b;
 b=b+temp;
+
+b = reshape(b,512,512);
+% b = denoising_dwt(b);
+b = reshape(b,512*512,1);
 
 m = 512/scale;
 n = 512/scale;

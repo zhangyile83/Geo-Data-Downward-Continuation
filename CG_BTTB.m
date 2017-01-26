@@ -10,7 +10,7 @@ mmax=20; %the maximal number of iterations
 u=ig;
 
 %r=tx(tev,b)-tx(tev,tx(tev,u));
-r=b-1/(2*pi)*tx(tev,u);
+r=b-tx(tev,u);
 e(1)=norm(r,inf);
 gap(1) = norm(reshape(u,512,512)-X,2)/norm(X,2);
 
@@ -18,7 +18,7 @@ iter=1;
 p=r;
 n=length(b);
 while iter < mmax & e(iter)/e(1)>tol,
-    temp=1/(2*pi)*tx(tev,p);
+    temp=tx(tev,p);
  %  temp=tx(tev,temp);
     temp1=p'*temp;
     alpha=r'*p/temp1;
@@ -33,6 +33,6 @@ while iter < mmax & e(iter)/e(1)>tol,
     gap(iter) = norm(reshape(u,512,512)-X,2)/norm(X,2);
 
     myplot(reshape(u,512,512));
-%     pause(2);
+    pause(1);
 end
 % plot(log10(e))

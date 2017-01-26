@@ -4,13 +4,14 @@ clc;
 
 % load('data_250_1.mat');
 % %load('data_0_exact.mat');
-% load('h200');
+load('h200');
 % load mag2_h200;
 %load mag2_h0
  %load h50;
- load h_200_Exact
- load('Exact');
+  load('Exact');
   
+ A = extend4(A);
+ X = extend4(X);
 
 
 %  dx = 10;

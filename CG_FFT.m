@@ -2,14 +2,14 @@ function [u,e,gap]=CG_FFT(b,ig,h,tol,M,N,dx,dy,X)
 
 [m,n] = size(b);
 
-mmax= 8;
+mmax= 20;
 
 u=ig;
 
 r = b - tx_FFT(dx,dy,u,h,M,N);
 
 p = r;
-gap(1) = norm(reshape(u,512,512)-X,inf)/norm(X,inf);
+gap(1) = norm(reshape(u,M,N)-X,inf)/norm(X,inf);
 e(1)=norm(r,inf);
 iter=1;
 n=length(b);
@@ -27,8 +27,9 @@ while iter < mmax && e(iter)/e(1)>tol,
     iter=iter+1
     e(iter)=norm(r,inf);
     e(iter)/e(1)
-    gap(iter) = norm(reshape(u,512,512)-X,inf)/norm(X,inf);
+    gap(iter) = norm(reshape(u,M,N)-X,inf)/norm(X,inf);
 
-    myplot(reshape(u,M,N));
-    %pause(0.5)
+%     myplot(cut4(reshape(u,M,N),M/2,N/2));
+    myplot(reshape(u,M,N),M,N);
+    pause(2)
 end
